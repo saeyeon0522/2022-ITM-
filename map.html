@@ -3,10 +3,35 @@
     <head>
         <title>MAP</title>
         <meta charset="utf-8">
+        <link rel="icon" type="jpg" href="./path.jpg">
+        logo
     </head>
     <body>
-        <h1>My Map</h1>
-        <p>Check your travel route.</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3159.6522152089246!2d127.07532043362123!3d37.633867807531104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cbb712d44f303%3A0xf74585f86bbdbe48!2z7ISc7Jq46rO87ZWZ6riw7Iig64yA7ZWZ6rWQIO2UhOuhoO2LsOyWtOq0gA!5e0!3m2!1sko!2skr!4v1667297083368!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <img src="./path.jpg" width="50px" height="50px">
+        <h1><div><a href="./index.html">Service Name - link to main</a></div></h1>
+        <h2>ROUTE</h2>
+        <h3>Menu</h3>
+        <ul>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+        </ul>
+        <p><strong>Check your travel route.</strong></p>
+        <div id="map" style="width:100%;height:350px;"></div>
+
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484"></script>
+        <script>
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+            // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+            var map = new kakao.maps.Map(mapContainer, mapOption); 
+        </script>
     </body>
 </html>
