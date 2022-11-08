@@ -3,17 +3,33 @@
     <head>
         <title>MAP</title>
         <meta charset="utf-8">
+        <link rel="icon" type="jpg" href="./path.jpg">
+        logo
     </head>
     <body>
-        <h1>My Map</h1>
-        <p>Check your travel route.</p>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 사용하세요"></script>
+        <img src="./path.jpg" width="50px" height="50px">
+        <h1><div><a href="./index.html">Service Name - link to main</a></div></h1>
+        <h2>ROUTE</h2>
+        <h3>Menu</h3>
+        <ul>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+            <p><div><a href="#">menu contents</a></div></p>
+        </ul>
+        <p><strong>Check your travel route.</strong></p>
+        <div id="map" style="width:100%;height:350px;"></div>
+
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484"></script>
         <script>
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = { 
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
             };
+
             // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
             var map = new kakao.maps.Map(mapContainer, mapOption); 
         </script>

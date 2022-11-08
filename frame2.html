@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame2</title>
+    <style>
+        @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
+
+        * {
+            margin : 0px;
+            padding : 0px;
+            font-family: 'Noto Sans Korean';
+        }
+
+        #wrapper {
+            display : flex;
+            height : 100vh;
+            width : 100vw;
+        }
+
+        #color_bar {
+            position : absolute;
+            background-color : #007acc;
+            width : 100vw;
+            height : 50px;
+            text-align : right;
+        }
+
+        #btn_bar {
+            margin-top: 100px;
+        }
+
+        #btn {
+            text-align: center;
+            border : 1px solid #f3f3f3;
+            margin : 10px;
+            padding : 1px;
+            background-color: white;
+        }
+
+        #menu {
+            width : 180px;
+            background-color : #f3f3f3;
+            position : fixed;
+            height : 100vh;
+            box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);
+        }
+
+        #logo {
+            text-align: center;
+            border-bottom : 3px solid #797979;
+        }
+
+        #side_bar {
+            margin : 10px 5px 0 5px;
+            overflow : auto;
+        }
+
+        .trip {
+            border-bottom : 1px solid #797979;
+            margin-bottom : 10px;
+            padding : 10px 0 10px 10px;
+            background-color : white;
+        }
+
+        .sub {
+            padding : 5px 0 5px 10px;
+            
+        }
+        
+        #contents {
+            margin-left : 200px;
+            margin-top : 50px;
+            width : 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="color_bar">
+        <div class="btn">로그아웃</div>
+        <div class="btn">마이페이지</div>
+    </div>
+    <div id="wrapper">
+
+        <div id="menu">
+            <div id="logo">
+                <a href="search.html"><img src="./logo.png"/ width="100px"></a>
+            </div>
+
+            <div id="side_bar">
+                <div class="trip">
+                    <div class="main">Trip1</div>
+                    <div class="sub">롯데월드</div>
+                    <div class="sub">광화문</div>
+                    <div class="sub">인천</div>
+                    <div class="sub">수원</div>
+                </div>
+                <div class="trip">
+                    <div class="main">Trip2</div>
+                    <div class="sub">ㄱ</div>
+                    <div class="sub">ㄴ</div>
+                    <div class="sub">ㄷ</div>
+                    <div class="sub">ㄹ</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contents" style="font-family:'Noto Sans Korean'; font-size: 16px;">
+            나랏말싸미 듕귁에 달아 문자와로 서르 사맛디 아니할쎄 이런 전차로 어린 백셩이 니르고져 홇베이셔도 마참네 제 뜨들 시러펴디 몯핧 노미하니아 내 이랄 윙하야 어엿비너겨 새로 스믈 여듫 짜랄 맹가노니 사람마다 해여 수비니겨 날로 쑤메 뻔한킈 하고져 할따라미니라.
+        </div>
+        
+    </div>
+
+</body>
+</html>
