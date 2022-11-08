@@ -1,37 +1,189 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>MAP</title>
-        <meta charset="utf-8">
-        <link rel="icon" type="jpg" href="./path.jpg">
-        logo
-    </head>
-    <body>
-        <img src="./path.jpg" width="50px" height="50px">
-        <h1><div><a href="./index.html">Service Name - link to main</a></div></h1>
-        <h2>ROUTE</h2>
-        <h3>Menu</h3>
-        <ul>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-        </ul>
-        <p><strong>Check your travel route.</strong></p>
-        <div id="map" style="width:100%;height:350px;"></div>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <style>
+        @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
 
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484"></script>
-        <script>
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = { 
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };
+        * {
+            margin : 0px;
+            padding : 0px;
+            font-family: 'Noto Sans Korean';
+        }
 
-            // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-            var map = new kakao.maps.Map(mapContainer, mapOption); 
-        </script>
-    </body>
+        #wrapper {
+            display : flex;
+            height : 100vh;
+            width : 100vw;
+        }
+
+        #color_bar {
+            position : absolute;
+            background-color : #007acc;
+            width : 100vw;
+            height : 50px;
+            display : flex;
+            flex-direction : row-reverse;
+        }
+
+        #btn_bar {
+            margin-top: 100px;
+        }
+
+        a{
+            text-decoration : none;
+            color : white;
+        }
+
+        .btn {
+            text-align: center;
+            margin : 10px;
+            padding : 1px;
+            background-color: rgba(0,0,0,0);
+            color : white;
+        }
+
+        #menu {
+            width : 180px;
+            background-color : #f3f3f3;
+            position : fixed;
+            height : 100vh;
+            box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);
+        }
+
+        #logo {
+            text-align: center;
+            border-bottom : 3px solid #797979;
+        }
+
+        #side_bar {
+            margin : 10px 5px 0 5px;
+            overflow : auto;
+        }
+
+        .trip {
+            border-bottom : 1px solid #797979;
+            margin-bottom : 10px;
+            padding : 10px 0 10px 10px;
+            background-color : white;
+        }
+
+        .sub {
+            padding : 5px 0 5px 10px;
+            
+        }
+        
+        #contents {
+            margin-left : 180px;
+            margin-top : 50px;
+            width : 100%;
+        }
+        #element {
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="color_bar">
+        <div class="btn"><a href="#"><b>로그아웃</b></a></div>
+        <div class="btn"><a href="#"><b>마이페이지</b></a></div>
+    </div>
+    <div id="wrapper">
+
+        <div id="menu">
+            <div id="logo">
+                <a href="search.html"><img src="./logo.png"/ width="100px"></a>
+            </div>
+
+            <div id="side_bar">
+                <div class="trip">
+                    <div class="main">Trip1</div>
+                    <div class="sub"><a href="#" id="element">롯데월드</a></div>
+                    <div class="sub"><a href="#" id="element">광화문</a></div>
+                    <div class="sub"><a href="#" id="element">인천</a></div>
+                    <div class="sub"><a href="#" id="element">수원</a></div>
+                </div>
+                <div class="trip">
+                    <div class="main">Trip2</div>
+                    <div class="sub">ㄱ</div>
+                    <div class="sub">ㄴ</div>
+                    <div class="sub">ㄷ</div>
+                    <div class="sub">ㄹ</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contents" style="font-family:'Noto Sans Korean'; font-size: 16px;">
+            <div id="map" style="width:100%;height:100%;"></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484"></script>
+            <script>
+                var container = document.getElementById('map');
+                var options = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667),
+                    level: 3
+                };
+        
+                var map = new kakao.maps.Map(container, options);
+
+                var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+                
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({position: markerPosition});
+                
+                // 마커가 지도 위에 표시되도록 설정합니다
+                marker.setMap(map);
+
+                if (navigator.geolocation) {
+                    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var lat = position.coords.latitude, // 위도
+                        lon = position.coords.longitude; // 경도
+                        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                        message = '<div style="padding:5px;">##님의 현 위치</div>'; // 인포윈도우에 표시될 내용입니다
+                        // 마커와 인포윈도우를 표시합니다
+                        displayMarker(locPosition, message);
+            
+                    });
+                }
+                else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+                    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+                    message = 'geolocation을 사용할수 없어요..'
+                    displayMarker(locPosition, message);
+                }
+                
+                // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+                function displayMarker(locPosition, message) {
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    }); 
+    
+    var iwContent = message, // 인포윈도우에 표시할 내용
+        iwRemoveable = true;
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content : iwContent,
+        removable : iwRemoveable
+    });
+    
+    // 인포윈도우를 마커위에 표시합니다 
+    infowindow.open(map, marker);
+    
+    // 지도 중심좌표를 접속위치로 변경합니다
+    map.setCenter(locPosition);      
+}    
+            </script>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+        </div>
+        
+    </div>
+
+</body>
 </html>
