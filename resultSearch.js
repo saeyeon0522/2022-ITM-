@@ -33,9 +33,9 @@ function searchPlaces() {
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch( keyword, placesSearchCB); 
 
-    // 검색버튼 누를때마다 키워드를 메인페이지 검색결과에 반영
-    element.innerHTML = document.getElementById('keyword').value;
-    console.log(element.innerHTML);
+    // 검색버튼 누를때마다 키워드를 메인페이지 검색결과:에 반영
+    searchResult = document.getElementById('keyword').value;
+    console.log(searchResult);
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -126,7 +126,7 @@ function getListItem(index, places) {
     var el = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+                '   <button class="btnPlaces" onclick="putToBasket(' + (index) + ')">' + places.place_name + '</button>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
