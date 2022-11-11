@@ -1,37 +1,133 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>MAP</title>
-        <meta charset="utf-8">
-        <link rel="icon" type="jpg" href="./path.jpg">
-        logo
-    </head>
-    <body>
-        <img src="./path.jpg" width="50px" height="50px">
-        <h1><div><a href="./index.html">Service Name - link to main</a></div></h1>
-        <h2>ROUTE</h2>
-        <h3>Menu</h3>
-        <ul>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-            <p><div><a href="#">menu contents</a></div></p>
-        </ul>
-        <p><strong>Check your travel route.</strong></p>
-        <div id="map" style="width:100%;height:350px;"></div>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <style>
+        @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
 
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484"></script>
-        <script>
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = { 
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };
+        * {
+            margin : 0px;
+            padding : 0px;
+            font-family: 'Noto Sans Korean';
+        }
 
-            // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-            var map = new kakao.maps.Map(mapContainer, mapOption); 
-        </script>
-    </body>
+        #wrapper {
+            display : flex;
+            height : 100vh;
+            width : 100vw;
+        }
+
+        #color_bar {
+            position : absolute;
+            background-color : #007acc;
+            width : 100vw;
+            height : 50px;
+            display : flex;
+            flex-direction : row-reverse;
+        }
+
+        #btn_bar {
+            margin-top: 100px;
+        }
+
+        a{
+            text-decoration : none;
+            color : white;
+        }
+
+        .btn {
+            text-align: center;
+            margin : 10px;
+            padding : 1px;
+            background-color: rgba(0,0,0,0);
+            color : white;
+        }
+
+        #menu {
+            width : 180px;
+            background-color : #f3f3f3;
+            position : fixed;
+            height : 100vh;
+            box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);
+        }
+
+        #logo {
+            text-align: center;
+            border-bottom : 3px solid #797979;
+        }
+
+        #side_bar {
+            margin : 10px 5px 0 5px;
+            overflow : auto;
+        }
+
+        .trip {
+            border-bottom : 1px solid #797979;
+            margin-bottom : 10px;
+            padding : 10px 0 10px 10px;
+            background-color : white;
+        }
+
+        .sub {
+            padding : 5px 0 5px 10px;
+            
+        }
+        
+        #contents {
+            margin-left : 180px;
+            margin-top : 50px;
+            width : 100%;
+        }
+        #element {
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="color_bar">
+        <div class="btn"><a href="#"><b>로그아웃</b></a></div>
+        <div class="btn"><a href="#"><b>마이페이지</b></a></div>
+    </div>
+    <div id="wrapper">
+
+        <div id="menu">
+            <div id="logo">
+                <a href="search.html"><img src="./logo.png"/ width="100px"></a>
+            </div>
+
+            <div id="side_bar">
+                <div class="trip">
+                    <div class="main">Trip1</div>
+                    <div class="sub"><a href="#" id="element">롯데월드</a></div>
+                    <div class="sub"><a href="#" id="element">광화문</a></div>
+                    <div class="sub"><a href="#" id="element">인천</a></div>
+                    <div class="sub"><a href="#" id="element">수원</a></div>
+                </div>
+                <div class="trip">
+                    <div class="main">Trip2</div>
+                    <div class="sub">ㄱ</div>
+                    <div class="sub">ㄴ</div>
+                    <div class="sub">ㄷ</div>
+                    <div class="sub">ㄹ</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contents" style="font-family:'Noto Sans Korean'; font-size: 16px;">
+            <div id="map" style="width:100%;height:100%;"></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484"></script>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+            <script src="buildMap.js"></script>
+            <script src="whereAmI.js"></script>
+            <script src="markerTracking.js"></script>
+
+        </div>
+        
+    </div>
+
+</body>
 </html>
