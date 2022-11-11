@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result</title>
-    <link rel="stylesheet" type="text/css" href="resultMap.css">
+    <link rel="stylesheet" type="text/css" href="result.css">
     <style>
         @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
 
@@ -152,14 +152,19 @@
 
         <div id="contents" style="font-family:'Noto Sans Korean'; font-size: 16px;">
 
-            <div class="map_wrap">
+            <div class="map_wrap">            
                 <div id="menu_wrap" class="bg_white">
                     <div class="option">
                         <div>
                             <form onsubmit="searchPlaces(); return false;">
                                 키워드 : <input type="text" value=hi id="keyword" size="15">
-                                <script>document.getElementById('keyword').value = searchResult</script>
+                                <script>
+                                    document.getElementById('keyword').value = searchResult; 
+                                </script>
                                 <button type="submit">검색</button> 
+                                <script>
+                                    element.innerText = document.getElementById('keyword').value;
+                                </script>
                             </form>
                         </div>
                     </div>
@@ -167,70 +172,14 @@
                     <ul id="placesList"></ul>
                     <div id="pagination"></div>
                 </div>
-                <div id="map" style="width:100%;height:100%;overflow:hidden;text-align:right"></div>
+                <div id="map" style="width:100%;height:100%;overflow:hidden;text-align:right;"></div>
+                
             
                 
             </div>
             
             <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484&libraries=services"></script>
             <script src="resultSearch.js"></script>
-
-            
-            <!-- <div id="map" style="width:500px;height:400px;"></div>
-            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484"></script>
-            <script>
-                var container = document.getElementById('map');
-                var options = {
-                    center: new kakao.maps.LatLng(33.450701, 126.570667),
-                    level: 3
-                };
-        
-                var map = new kakao.maps.Map(container, options);
-
-                // 장소 검색 객체를 생성합니다
-                var ps = new kakao.maps.services.Places(); 
-
-                // 키워드로 장소를 검색합니다
-                ps.keywordSearch(searchResult, placesSearchCB); 
-
-                // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-                function placesSearchCB (data, status, pagination) {
-                    if (status === kakao.maps.services.Status.OK) {
-
-                        console.log(result);
-
-                        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-                        // LatLngBounds 객체에 좌표를 추가합니다
-                        var bounds = new kakao.maps.LatLngBounds();
-
-                        for (var i=0; i<data.length; i++) {
-                            data[i]
-                        }       
-
-                        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-                        map.setBounds(bounds);
-                    } 
-                }
-
-                var arr1 = [];
-                for (var i=0; i<data.lenngth; i++) {
-                    arr[i] = ps.keywordSearch.data[i];
-                }
-
-            </script>
-
-            <div style="width:500px;height:100px; background-color:black; color:white;">
-                <div>
-                    <script>
-                        document.write(searchResult);
-                    </script>
-                    리스트
-                </div>                    
-                <script>                    
-                    document.write(arr1);
-                </script>
-            </div> -->
-            
 
         </div>
 
