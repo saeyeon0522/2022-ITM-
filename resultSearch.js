@@ -23,6 +23,7 @@ searchPlaces();
 function searchPlaces() {
 
     var keyword = document.getElementById('keyword').value;
+    console.log(keyword);
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
         alert('키워드를 입력해주세요!');
@@ -31,6 +32,10 @@ function searchPlaces() {
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch( keyword, placesSearchCB); 
+
+    // 검색버튼 누를때마다 키워드를 메인페이지 검색결과에 반영
+    element.innerHTML = document.getElementById('keyword').value;
+    console.log(element.innerHTML);
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
