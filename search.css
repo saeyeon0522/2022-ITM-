@@ -1,0 +1,64 @@
+.background {
+    width: 600px;
+    height: 500px;
+    align-items: middle;
+    margin: auto;
+}
+
+.search{
+    object-position: center;
+}
+.searchbox {
+    position: relative;
+    height: 40px;
+    width: 800px;
+    border: 2px solid #007acc;
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+.top_bar{
+    position : relative;
+    background-color : #007acc;
+            width : 100vw;
+            height : 50px;
+            text-align : right;
+            font-size: 20px;
+            text-decoration: none;
+            text-decoration-color: white;
+}
+
+a:link {
+    line-height: 50px;
+    color:white;   
+}
+
+a:visited {
+    line-height: 50px;
+    color: white;
+}
+
+input {
+        font-size: 16px;
+    width : 200px;
+    padding: 10px;
+    border:0px;
+    background-color: transparent;
+    outline: none;
+    float: left 10%;
+}
+
+button {
+    width: 70px;
+    height: 100%;
+    border: 0px;
+    outline: none;
+    background-color: transparent;
+    float: right;
+    color: #007acc;
+}
+
+#search_btn {
+    text-decoration: black;
+    color:black;
+}

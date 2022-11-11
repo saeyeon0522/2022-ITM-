@@ -2,44 +2,29 @@
 <html>
     <head>
         <meta charset="utf-8">
-    <title>Main page_search</title>
-    </head>
+        <title>Main_home</title>
+        <link rel="stylesheet" href="search.css">
+</head>
 
     <body>
-        <h1 class="main"> </h1>
-        <div class="top-logo">
-            <p align="left">
-                <img src="https://c8.alamy.com/comp/2DAXK3E/travel-agency-logo-trip-logo-design-vector-illustration-2DAXK3E.jpg"
-                    width="130px" height="60px">
-            </p>
-        </div>
-        <div class="atag" style="position: fixed; right: 110px; top: 30px">
-            <a href="https://mypage.com" style="color: grey;">▷ 마이페이지</a> <!--개인정보 수정 등-->
-            <a href="https://travel.com" style="color: grey;">▷ 내 장소 보기</a> <!--여행 기본 정보-->
-            <a href="https://map.com" style="color: grey;">▷ 여행 안내</a> <!--지도-->
-            <form class= "language" style="position: fixed; right:50px; top: 28px;">
-                <select class="SelectSearch" name="WhichSearch">
-                    <option id = 'kor' value = 'kor'>kor</option>
-                    <option id = 'eng' value = 'eng'>eng</option>
-                </select>
+        <div class="top">
+            <form action="result.html">
+                <img class="logo" src="./logo.png" role="button">
             </form>
+            <div class="menu" style="position: fixed; left: 120px; top:30px; height: 70px;">
+                    <a class = "mypage" href="https://mypage.com" style="text-decoration: none;">마이페이지</a> <!--개인정보 수정 등-->
+                    <a class = "travel" href="https://travel.com" style="text-decoration: none; color: white;">여행 플랜</a> <!--여행 기본 정보-->
+                    <form class="account" href="https:/login.com" style="text-decoration: none; color:white;">로그인</form> <!--지도-->
+            </div>
         </div>
-        <br>
 
-        <img style="display:block; margin:0 auto;" 
-            src="https://cdn.maily.so/6lvqkwa5j0ts7tg18kchkb722od7" 
-            top="400px" width="350px" height="350px" margin auto;>
-        <br>
-        <br>
-
-        <div> 
-          <input type="search" 
-                style="background-color:lavender; width : 550px; height : 40px; border : purple 2px solid; border-radius: 20px;"
-                placeholder="search">
-            <a href="file:///C:/Users/saeye/Desktop/2%ED%95%99%EA%B8%B0/%EA%B3%B5%EB%AA%A8%EC%A0%84/git_page/result.html" style="color: grey;">
-                <img src="https://www.freepnglogos.com/uploads/search-png/search-icon-clip-art-clkerm-vector-clip-art-online-22.png"
-                style="width : 20px; height : 10px;" ></a>
-                
+        <div class="middle">
+            <img class = "background" src="./background.jpg" > 
+             <div class="searchbar">
+                <input type="search"  placeholder="search">
+                <button value="search"></button>
+            </div>
         </div>
+
     </body>
 </html>
