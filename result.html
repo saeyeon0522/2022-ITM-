@@ -181,12 +181,6 @@
                 <script>
                     var bItems = document.getElementsByClassName('basket_item');
                     console.log(bItems);
-                    console.log(bItems[0].innerHTML);
-
-                    var arrBasket = [];
-                    arrBasket.push('hi');
-                    arrBasket.push('hello');
-                    console.log(arrBasket);
 
                     function putToBasket(x){
                         obj = document.getElementById("basket_main");
@@ -194,20 +188,32 @@
                         newDiv.innerHTML = document.getElementsByClassName('btnPlaces')[x].innerHTML;
                         newDiv.setAttribute("class", "basket_item"); // 새롭게 만들어지는 div 태그에 id/class 값 저장
                         
-                        //arrBasket.push(newDiv.innerHTML);
-                        console.log(newDiv.innerHTML);
-            
+                        basketName = document.getElementsByClassName("btnPlaces")[x].innerHTML;
+                        basketAddress = document.getElementsByClassName("addressName")[x].innerHTML;
+                        basketPhone = document.getElementsByClassName("tel")[x].innerHTML;
+
+                        arrBasket.push({"name": basketName, "address": basketAddress, "phone": basketPhone});
+
+
+                        console.log(arrBasket);
+                        console.log(arrBasket.length);
+                        console.log(arrBasket[arrBasket.length - 1]["name"], arrBasket[arrBasket.length - 1]["address"], arrBasket[arrBasket.length - 1]["phone"]);
+
                         // 익명 함수 : 바로 그 이벤트를 실행하기위해 이름을 정하지 않고 바로실행
                         newDiv.onclick = function(){
                             p = this.parentElement; //부모 HTML 태그요소
-                            p.removeChild(this); // 자신을 부모 태그로 부터 제거   
+                            p.removeChild(this); // 자신을 부모 태그로 부터 제거
+
+                            arrBasket.pop();
+                            console.log(arrBasket.length);
+                            console.log(arrBasket);
                         }
             
                         obj.appendChild(newDiv);
 
                     }
-                    
-                    console.log(arrBasket);
+                    var arrBasket = [];
+                   
                 </script>
 
             </div>
