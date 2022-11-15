@@ -8,23 +8,25 @@
 
     <body>
         <div class="top">
-            <form action="result.html">
+            
+            <div id="color_bar">
+                <div class="btn"><a href="#"><b>마이페이지</b></a></div>
+                <div class="btn"><a href="#"><b>여행 플랜</b></a></div>
+                <div class="btn"><a href="#"><b>로그아웃</b></a></div>
+            </div>
+            <form action="search.html">
                 <img class="logo" src="./logo.png" role="button">
             </form>
-            <div class="menu" style="position: fixed; left: 120px; top:30px; height: 70px;">
-                    <a class = "mypage" href="https://mypage.com" style="text-decoration: none;">마이페이지</a> <!--개인정보 수정 등-->
-                    <a class = "travel" href="https://travel.com" style="text-decoration: none; color: white;">여행 플랜</a> <!--여행 기본 정보-->
-                    <form class="account" href="https:/login.com" style="text-decoration: none; color:white;">로그인</form> <!--지도-->
-            </div>
         </div>
 
         <div class="middle">
-            <img class = "background" src="./background.jpg" > 
-             <div class="searchbar">
-                <input type="search"  placeholder="search">
-                <button value="search"></button>
+            <img id = "background" src="./background.jpg" > 
+            <div class="searchbar">
+                <input class="searchaction" maxlength="1024" name="p" type="text" aria-autocomplete="both" aria-haspopup="false" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="" role="combobox" spellcheck="false" title="검색" value="" aria-label="검색">
+                <a value="search" href="result.html">
+                    <button class="searchbutton">search</button>
+                </a>
             </div>
         </div>
-
     </body>
 </html>

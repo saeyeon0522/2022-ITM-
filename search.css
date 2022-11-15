@@ -1,3 +1,45 @@
+.logo{
+    align-items: left;
+    width: 120px;
+    height: 100px;
+}
+
+
+#color_bar {
+    position : absolute;
+    background-color : #007acc;
+    width : 100vw;
+    height : 70px;
+    display : flex;
+    flex-direction : row-reverse;
+    top: 30px;
+    left: 130px;
+}
+
+.mypagemenu{
+    text-decoration: none;
+    align-items: right;
+    text-decoration-color: white;
+    text-decoration-line: none;
+    font-size: 80px;   
+}
+
+
+.travelmenu{
+    text-decoration: none;
+    align-items: right;
+    text-decoration-color: white;
+    text-decoration-line: none;
+    font-size: 80px;   
+}
+
+.accountmenu{
+    background-color: skyblue;
+    height: 80px;
+    border: 1px;
+    border-radius: 40px;
+
+}
 .background {
     width: 600px;
     height: 500px;
@@ -5,40 +47,33 @@
     margin: auto;
 }
 
-.search{
+.middle{
     object-position: center;
 }
-.searchbox {
-    position: relative;
+.searchbar {
+    position: absolute;
     height: 40px;
-    width: 800px;
+    width: 80%;
     border: 2px solid #007acc;
     border-radius: 30px;
-    margin: 0 auto;
-}
-
-.top_bar{
-    position : relative;
-    background-color : #007acc;
-            width : 100vw;
-            height : 50px;
-            text-align : right;
-            font-size: 20px;
-            text-decoration: none;
-            text-decoration-color: white;
+    margin: 20px;
+    padding: 0px;
+    font-family: 'Noto Sans Korean';
 }
 
 a:link {
-    line-height: 50px;
-    color:white;   
+    line-height: 80px;
+    color:white;
+    text-decoration-line: none;   
 }
 
 a:visited {
-    line-height: 50px;
+    line-height: 80px;
+    text-decoration-line: none;   
     color: white;
 }
 
-input {
+.searchaction{
         font-size: 16px;
     width : 200px;
     padding: 10px;
@@ -58,6 +93,13 @@ button {
     color: #007acc;
 }
 
+#background {
+    position: fixed;
+    width: 800px;
+    height: 600px;
+    display: block;
+    align-items: center;
+}
 #search_btn {
     text-decoration: black;
     color:black;
