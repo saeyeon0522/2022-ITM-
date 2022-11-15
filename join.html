@@ -9,19 +9,10 @@
 <body>
 
     <form>
-        <h1>회원가입</h1>
         <div>email : <input type="email" id="signUpEmail"></div>
         <div>password : <input type="password" id="signUpPassword"></div>
-        <button type="submit" id="signUpButton">회원가입 하기</button>
-        <button>로그인 하러 가기</button>
-    </form>
+        <button type="submit" id="signUpButton">회원가입</button>
 
-    <form>
-        <h1>로그인</h1>
-        <div>email : <input type="email" id="signInEmail"></div>
-        <div>password : <input type="password" id="signInPassword"></div>
-        <button type="submit" id="signIpButton">로그인 하기</button>
-        <button>회원가입 하러 가기</button>
     </form>
 
     <script type="module">
@@ -47,19 +38,17 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
     
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
-
-        const auth = getAuth();
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
         document.getElementById('signUpButton').addEventListener('click',(event) => {
             event.preventDefault();
             const signUpEmail = document.getElementById('signUpEmail').value;
             const signUpPassword = document.getElementById('signUpPassword').value;
-
+            const auth = getAuth();
             createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
                 .then((userCredential) => {
-                    // Signed in 
                     console.log(userCredential);
+                    // Signed in 
                     const user = userCredential.user;
                     // ...
                 })
@@ -72,24 +61,6 @@
         
         })
 
-        document.getElementById('signInButton').addEventListener('click',(event) => {
-            event.preventDefault();
-            const signInEmail = document.getElementById('signInEmail').value;
-            const signInPassword = document.getElementById('signInPassword').value;
-            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
-                .then((userCredential) => {
-                    // Signed in 
-                    console.log(userCredential)
-                    const user = userCredential.user;
-                    // ...
-                })
-                .catch((error) => {
-                    console.log('로그인 실패');
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                });
-
-            })
 
                 console.log(app);
     </script>
