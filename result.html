@@ -1,254 +1,260 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>검색결과</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" type="text/css" href="result.css">
     <style>
-        body {
-            margin: 0;
+        @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
+
+        * {
+            margin : 0px;
+            padding : 0px;
+            font-family: 'Noto Sans Korean';
+        }
+
+        #wrapper {
+            display : flex;
+            height : 100vh;
+            width : 100vw;
+        }
+
+        #color_bar {
+            position : absolute;
+            background-color : #007acc;
+            width : 100%;
+            height : 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        #result_bar {
+            color: white;
+            font-size: 20px;
+            width: 100%;
+            margin-left: 190px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #placeSearchResult {
+            color: white;
+            font-weight: bold;
+        }
+
+        #btn_bar {
+            width: 100%;
+            display : flex;
+            justify-content: flex-end;
+        }
+
+        a{
+            text-decoration : none;
+            color : white;
+        }
+
+        .btn {
+            text-align: center;
+            margin : 10px;
+            padding : 1px;
+            background-color: rgba(0,0,0,0);
+            color : white;
+            font-weight: bold;
+        }
+
+        #menu {
+            width : 180px;
+            background-color : #f3f3f3;
+            position : fixed;
+            height : 100vh;
+            box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);
+            overflow: auto;
+        }
+
+        #logo {
+            text-align: center;
+            border-bottom : 3px solid #797979;
+        }
+
+        #side_bar {
+            margin : 10px 5px 0 5px;
+            overflow : auto;
+            border-bottom : 3px solid #797979;
+        }
+
+        .trip {
+            border-bottom : 1px solid #797979;
+            margin-bottom : 10px;
+            padding : 10px 0 10px 10px;
+            background-color : white;
+        }
+
+        .main {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .sub {
+            padding : 5px 0 5px 10px;
             
         }
-        .side-menu {
-            top: 50px;
-            width: 45px;
-            z-index: 10;
-            background: #007acc;
-            border-right: 1px solid rgba(0, 0, 0, 0.07);
-            bottom: 50px;
-            height: 100%;
-            margin-bottom: -70px;
-            margin-top: 0px;
-            padding-bottom: 70px;
-            position: fixed;
-            box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);
+
+        #basket_bar {
+            margin : 10px 5px 0 5px;
+            overflow : auto;
+            border-bottom : 3px solid #797979;
         }
 
-        .sidebar-inner {
-            height: 100%;
-            padding-top: 30px;
+        .basket {
+            border-bottom : 1px solid #797979;
+            margin-bottom : 10px;
+            padding : 10px 0 10px 10px;
+            background-color : white;
         }
 
-        #sidebar-menu,
-        #sidebar-menu ul,
-        #sidebar-menu li,
-        #sidebar-menu a {
-            border: 0;
-            font-weight: normal;
-            line-height: 1;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            text-decoration: none;
+        #basket_main {
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        #sidebar-menu>ul>li a {
-            color: #fff;
-            font-size: 20px;
-            display: block;
-            padding: 14px 0px;
-            margin: 0px 0px 0px 8px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            width: 28px;
-            cursor: pointer;
+        .basket_item {
+            padding : 5px 0 5px 10px;
+        }
+        
+        #contents {
+            margin-left : 180px;
+            margin-top : 50px;
+            width : 100%;
         }
 
-        #sidebar-menu .fas {
-            padding-left: 6px;
-        }
-
-        /* 사이드 메뉴 */
-        input[type="search"] {
-            width: 180px;
-            margin: 0 auto;
-            margin-left: 9px;
-            border: 2px solid #797979;
-            font-size: 14px;
-            margin-top: 10px;
-            padding: 4px 0 4px 14px;
-            border-radius: 50px;
-        }
-
-        .left_sub_menu {
-            position: fixed;
-            top: 50px;
-            width: 200px;
-            z-index: 10;
-            left: 45px;
-            background: white;
-            border-right: 1px solid rgba(0, 0, 0, 0.07);
-            bottom: 50px;
-            height: 100%;
-            margin-bottom: -70px;
-            margin-top: 0px;
-            padding-bottom: 0px;
-            box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);
-            color: black;
-        }
-
-        .sub_menu {
-            margin-top: 50px;
-        }
-
-        .left_sub_menu>.sub_menu li:hover {
-            color: ff5858;
-            background-color: #e1e1e1;
-        }
-
-        .left_sub_menu>.sub_menu li {
-            color: #333;
-            font-size: 17px;
-            font-weight: 600;
-            padding: 20px 0px 8px 14px;
-            border-bottom: 1px solid #e1e1e1;
-        }
-
-        .sub_menu>h2 {
-            padding-bottom: 4px;
-            border-bottom: 3px solid #797979;
-            margin-top: 30px;
-            font-size: 21px;
-            font-weight: 600;
-            color: #333;
-            margin-left: 10px;
-            margin-right: 10px;
-            font-family: 'NotoKrB';
-            line-height: 35px;
-        }
-
-        .sub_menu .fas {
-            color: #ff5858;
-            font-size: 20px;
-            line-height: 20px;
-            float: right;
-            margin-right: 20px;
-        }
-
-        .sub_menu>.big_menu>.small_menu li {
-            color: #333;
-            font-size: 14px;
-            font-weight: 600;
-            border-bottom: 0px solid #e1e1e1;
-            margin-left: 14px;
-            padding-top: 8px;
-        }
-
-        .big_menu {
-            cursor: pointer;
-        }
-
-        ul {
-            padding-inline-start: 0px;
-        }
-
-        a {
-            color: #797979;
-            text-decoration: none;
-            background-color: transparent;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        ol,
-        ul {
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .has_sub {
-            width: 100%;
-        }
-
-        .overlay {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .hide_sidemenu {
-            display: none;
-        }
     </style>
 </head>
 
-<!-- fontawesome-->
-<link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-<!-- 왼쪽 사이드 메뉴 스크립트 -->
-<script>
-    $(function () {
-        $(".left_sub_menu").hide();
-        $(".has_sub").click(function () {
-            $(".left_sub_menu").fadeToggle(300);
-        });
-        // 왼쪽메뉴 드롭다운
-        $(".sub_menu ul.small_menu").hide();
-        $(".sub_menu ul.big_menu").click(function () {
-            $("ul", this).slideToggle(300);
-        });
-        // 외부 클릭 시 좌측 사이드 메뉴 숨기기
-        $('.overlay').on('click', function () {
-            $('.left_sub_menu').fadeOut();
-            $('.hide_sidemenu').fadeIn();
-        });
-    });
-</script>
-
-
 <body>
-
-    <div id="wrapper">
-        <div class="topbar" style="position: absolute; top:0;">
-            <!-- 왼쪽 메뉴 -->
-            <div class="left side-menu">
-                <div class="sidebar-inner">
-                    <div id="sidebar-menu">
-                        <ul>
-                            <li class="has_sub"><a href="javascript:void(0);" class="waves-effect">
-                                <i class="fas fa-bars"></i>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
+    <div id="color_bar">
+        <div id="result_bar">
+            <div>
+                메인페이지 검색결과:&nbsp&nbsp
             </div>
-            <!-- 왼쪽 서브 메뉴 -->
-            <div class="left_sub_menu">
-                <ul class="big_menu">
-                    <li><a href="search.html">메인페이지</a></li>
-                </ul>
-                <div class="sub_menu">                    
-                    <ul class="big_menu">
-                        <li><a href="mypage.html">마이페이지</a></li>
-                    </ul>
-                    <input type="search" name="SEARCH" placeholder="검색">
-                    <h2>검색결과</h2>
-                    <ul class="big_menu">
-                        <li>여행 1 <i class="arrow fas fa-angle-right"></i></li>
-                        <ul class="small_menu">
-                            <li><a href="#">여행1-1</a></li>
-                            <li><a href="#">여행1-2</a></li>
-                            <li><a href="#">여행1-3</a></li>
-                            <li><a href="#">여행1-4</a></li>
-                        </ul>
-                    </ul>
-                    <ul class="big_menu">
-                        <li>여행 2 <i class="arrow fas fa-angle-right"></i></li>
-                        <ul class="small_menu">
-                            <li><a href="#">여행2-1</a></li>
-                            <li><a href="#"></a>여행2-2</a></li>
-                        </ul>
-                    </ul>                    
-                </div>
+            <div id="placeSearchResult">
+                <div class="searcedPlace">서울과기대</div>
+                <script>
+                    var element = document.getElementById('placeSearchResult');
+                    var searchResult = element.innerText;
+                    console.log(searchResult);
+                </script>
             </div>
-            <!-- <div class="overlay"></div> -->
         </div>
+        <div id="btn_bar">
+            <div class="btn"><a href="#">로그아웃</a></div>
+            <div class="btn"><a href="#">마이페이지</a></div>
+        </div>
+
+    </div>
+    <div id="wrapper">
+
+        <div id="menu">
+            <div id="logo">
+                <a href="search.html"><img src="./logo.png"/ width="100px"></a>
+            </div>
+
+            <div id="side_bar">
+                <div class="trip">
+                    <div class="main">생성중인 여행</div>
+                    <div class="sub">여기는</div>
+                    <div class="sub">꼭</div>
+                    <div class="sub">가보고</div>
+                    <div class="sub">싶다</div>
+                </div>
+            </div>
+
+            <div id="basket_bar">
+                <div class="basket">
+                    <div id="basket_main">장바구니</div>
+                    <!-- <div class="basket_item">아이템1</div>
+                    <div class="basket_item">아이템2</div> -->
+                </div>
+
+                <script>
+                    var bItems = document.getElementsByClassName('basket_item');
+                    console.log(bItems);
+
+                    function putToBasket(x){
+                        obj = document.getElementById("basket_main");
+                        newDiv = document.createElement("div");
+                        newDiv.innerHTML = document.getElementsByClassName('btnPlaces')[x].innerHTML;
+                        newDiv.setAttribute("class", "basket_item"); // 새롭게 만들어지는 div 태그에 id/class 값 저장
+                        
+                        basketName = document.getElementsByClassName("btnPlaces")[x].innerHTML;
+                        basketAddress = document.getElementsByClassName("addressName")[x].innerHTML;
+                        basketPhone = document.getElementsByClassName("tel")[x].innerHTML;
+
+                        arrBasket.push({"name": basketName, "address": basketAddress, "phone": basketPhone});
+
+
+                        console.log(arrBasket);
+                        console.log(arrBasket.length);
+                        console.log(arrBasket[arrBasket.length - 1]["name"], arrBasket[arrBasket.length - 1]["address"], arrBasket[arrBasket.length - 1]["phone"]);
+
+                        // 익명 함수 : 바로 그 이벤트를 실행하기위해 이름을 정하지 않고 바로실행
+                        newDiv.onclick = function(){
+                            p = this.parentElement; //부모 HTML 태그요소
+                            p.removeChild(this); // 자신을 부모 태그로 부터 제거
+
+                            arrBasket.pop();
+                            console.log(arrBasket.length);
+                            console.log(arrBasket);
+                        }
+            
+                        obj.appendChild(newDiv);
+
+                    }
+                    var arrBasket = [];
+                   
+                </script>
+
+            </div>
+        </div>
+
+
+        <div id="contents" style="font-family:'Noto Sans Korean'; font-size: 16px;">
+
+            <div class="map_wrap">            
+                <div id="menu_wrap" class="bg_white">
+                    <div class="option">
+                        <div>
+                            <form onsubmit="searchPlaces(); return false;">
+                                키워드 : <input type="text" value=hi id="keyword" size="15">
+                                <script>
+                                    document.getElementById('keyword').value = searchResult;
+                                </script>
+                                <button type="submit">검색</button> 
+                                <script>
+                                    console.log(searchResult);
+                                </script>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <ul id="placesList"></ul>
+                    <div id="pagination"></div>
+                </div>
+                <div id="map" style="width:100%;height:100%;overflow:hidden;text-align:right;"></div>
+                
+            
+                
+            </div>
+            
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb88ae920349c517e5782312be83c484&libraries=services"></script>
+            <script src="resultSearch.js"></script>
+
+        </div>
+
+        
     </div>
 
 </body>
-
 </html>
-
