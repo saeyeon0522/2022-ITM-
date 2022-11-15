@@ -4,42 +4,203 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>그런거 없는데 - Trip</title>
+    <title>Frame2</title>
+
+    <style>
+
+    @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
+    
+    * {
+        margin : 0px;
+        padding : 0px;
+        font-family: 'Noto Sans Korean';
+    }
+
+    #wrapper {
+        display : flex;
+        height : 100vh;
+        width : 100vw;
+    }
+
+    #color_bar {
+        position : fixed;
+        background-color : #007acc;
+        width : 100vw;
+        height : 50px;
+        display : flex;
+        flex-direction : row-reverse;
+    }
+
+    #btn_bar {
+        margin-top: 100px;
+    }
+
+    a{
+        text-decoration : none;
+        color : white;
+    }
+
+    .btn {
+        text-align: center;
+        margin : 10px;
+        padding : 1px;
+        background-color: rgba(0,0,0,0);
+        color : white;
+    }
+
+    #menu {
+        width : 180px;
+        background-color : #f3f3f3;
+        position : fixed;
+        height : 100vh;
+        box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);
+    }
+
+    #logo {
+        text-align: center;
+        border-bottom : 3px solid #797979;
+    }
+
+    #side_bar {
+        margin : 10px 5px 0 5px;
+        overflow : auto;
+    }
+
+    .trip {
+        border-bottom : 1px solid #797979;
+        margin-bottom : 10px;
+        padding : 10px 0 10px 10px;
+        background-color : white;
+    }
+
+    .sub {
+        padding : 5px 0 5px 10px;
+        
+    }
+    
+    #contents {
+        margin-left : 180px;
+        margin-top : 50px;
+        width : 100%;
+        padding-left : 10px;
+    }
+
+    .item {
+        width : 100%;
+        height : 100px;
+        margin : 5px 0 5px 0;
+        border-radius : 5px;
+        box-shadow : 2px 3px 3px grey;
+        transition : transform 0.5s;
+    }
+
+    .item:hover {
+        background-color : #808080;
+        transform : scale(1.02);
+    }
+    </style>
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function dragstart(event) {
+            event.dataTransfer.setData("text", event.target.innerHTML);
+            console.log(event.dataTransfer.getData("text"));
+        };
+
+        function drop(event) {
+            event.preventDefault();
+
+            if(event.target.className == "trip") {
+                var txt = event.dataTransfer.getData("text");
+                event.target.appendChild(makeSub(txt));
+            }
+        }
+
+        function makeSub(txt) {
+            const sub = document.createElement('div');
+            sub.className = 'sub';
+            const subText = document.createTextNode(txt);
+            sub.appendChild(subText);
+            return sub;
+        }
+
+
+    </script>
 </head>
 <body>
-    <a id="home_button" href="./index.html">Home</a>
-    <div id="background">
-        <div id="menu_bar">
-            <p>Sigma Trip</p>
-            <a class="trip_button">T1
-                <div class="wrapper">
-                    <div class="item">마산</div>
-                    <div class="item">김해</div>
-                    <div class="item">창원</div>
+    <div id="color_bar">
+        <div class="btn"><a href="#"><b>로그아웃</b></a></div>
+        <div class="btn"><a href="#"><b>마이페이지</b></a></div>
+    </div>
+    <div id="wrapper">
+
+        <div id="menu">
+            <div id="logo">
+                <a href="search.html"><img src="./logo.png"/ width="100px"></a>
+            </div>
+
+            <div id="side_bar">
+
+                <div class="trip" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div class="main">Trip1</div>
+                    <div class="sub">롯데월드</div>
+                    <div class="sub">광화문</div>
+                    <div class="sub">인천</div>
+                    <div class="sub">수원</div>
                 </div>
-            </a>
-            <a class="trip_button">T2
-                <div class="wrapper">
-                    <div class="item">강남</div>
-                    <div class="item">인사</div>
-                    <div class="item">노원</div>
+
+                <div class="trip" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div class="main">Trip2</div>
+                    <div class="sub">ㄱ</div>
+                    <div class="sub">ㄴ</div>
+                    <div class="sub">ㄷ</div>
+                    <div class="sub">ㄹ</div>
                 </div>
-            </a>
-            <a class="trip_button">T3
-                <div class="wrapper">
-                    <div class="item">광안리</div>
-                    <div class="item">진구</div>
-                    <div class="item">해운대구</div>
-                </div>
-            </a>
+
+            </div>
         </div>
-        <div id="basket">
-            <div class="item">장바구니 아이템 1</div>
-            <div class="item">장바구니 아이템 2</div>
-            <div class="item">장바구니 아이템 3</div>
-            <div class="item">장바구니 아이템 4</div>
-            <div class="item">장바구니 아이템 5</div>
+        <div id="contents" style="font-family:'Noto Sans Korean'; font-size: 16px;">
+            <div class="item" draggable="true" ondragstart="dragstart(event)">광화문</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">롯데월드</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">레고랜드</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">서울시청</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">남산타워</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">광화문</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">롯데월드</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">레고랜드</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">서울시청</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">남산타워</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">광화문</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">롯데월드</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">레고랜드</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">서울시청</div>
+            <div class="item" draggable="true" ondragstart="dragstart(event)">남산타워</div>
         </div>
     </div>
 </body>
+
+<script>
+
+    function makeTrip() {
+        const side_bar = document.getElementById('side_bar');
+        const trip = document.createElement('div');
+        const html = "<div class='main'>Trip"+(document.getElementsByClassName('trip').length+1).toString()+"</div>";
+
+        trip.classList.add('trip');
+        trip.setAttribute('ondrop', 'drop(event)');
+        trip.setAttribute('ondragover', 'allowDrop(event)');
+
+        side_bar.appendChild(trip);
+
+        document.querySelector('div.trip:last-child').innerHTML = html;
+
+    }
+
+    makeTrip();
+
+</script>
+
 </html>
