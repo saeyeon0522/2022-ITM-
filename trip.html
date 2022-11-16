@@ -24,7 +24,7 @@
 
     #color_bar {
         position : fixed;
-        background-color : #007acc;
+        background-color : #96DCF0;
         width : 100vw;
         height : 50px;
         display : flex;
@@ -59,18 +59,21 @@
     #logo {
         text-align: center;
         border-bottom : 3px solid #797979;
+        height : 100px;
     }
 
     #side_bar {
         margin : 10px 5px 0 5px;
-        overflow : auto;
+        height : calc(100vh - 100px);
+        overflow-y: auto;
     }
 
     .trip {
-        border-bottom : 1px solid #797979;
         margin-bottom : 10px;
-        padding : 10px 0 10px 10px;
+        padding : 10px 10px 10px 10px;
+        height : auto;
         background-color : white;
+        transition : all 0.5s linear;
     }
 
     .sub {
@@ -98,9 +101,19 @@
         background-color : #808080;
         transform : scale(1.02);
     }
+
+    .main {
+        background-color : #e1e1e1;
+        height : 5vh;
+        text-align: center;
+        align-self: center;
+        border-radius: 5px;
+    }
+
     </style>
 
     <script>
+
         function allowDrop(event) {
             event.preventDefault();
         }
@@ -112,21 +125,19 @@
 
         function drop(event) {
             event.preventDefault();
+            const txt = event.dataTransfer.getData("text");
+            const sub = document.createElement('div');
+            const subTxt = document.createTextNode(txt);
+            
+            sub.className = 'sub';
+            sub.appendChild(subTxt);
 
             if(event.target.className == "trip") {
-                var txt = event.dataTransfer.getData("text");
                 event.target.appendChild(makeSub(txt));
+            } else if (event.target.className == "sub" || event.target.className == "main") {
+                event.target.parentElement.appendChild(sub);
             }
         }
-
-        function makeSub(txt) {
-            const sub = document.createElement('div');
-            sub.className = 'sub';
-            const subText = document.createTextNode(txt);
-            sub.appendChild(subText);
-            return sub;
-        }
-
 
     </script>
 </head>
@@ -142,25 +153,7 @@
                 <a href="search.html"><img src="./logo.png"/ width="100px"></a>
             </div>
 
-            <div id="side_bar">
-
-                <div class="trip" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <div class="main">Trip1</div>
-                    <div class="sub">롯데월드</div>
-                    <div class="sub">광화문</div>
-                    <div class="sub">인천</div>
-                    <div class="sub">수원</div>
-                </div>
-
-                <div class="trip" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <div class="main">Trip2</div>
-                    <div class="sub">ㄱ</div>
-                    <div class="sub">ㄴ</div>
-                    <div class="sub">ㄷ</div>
-                    <div class="sub">ㄹ</div>
-                </div>
-
-            </div>
+            <div id="side_bar"></div>
         </div>
         <div id="contents" style="font-family:'Noto Sans Korean'; font-size: 16px;">
             <div class="item" draggable="true" ondragstart="dragstart(event)">광화문</div>
@@ -199,7 +192,99 @@
 
     }
 
-    makeTrip();
+    var tripRepository = new Map();
+
+    function addTrip(key) {
+        if(validateKey(key)) {
+            tripRepository.set(key, new Set());
+        }
+    }
+    
+    function addSpot(key, value) {
+        tripRepository.get(key).add(value);
+    }
+
+    function deleteSpot(key, value) {
+        tripRepository.get(key).delete(value);
+    }
+
+    function validateKey(key) {
+        return !tripRepository.has(key);
+    }
+
+    function deleteTrip(key) {
+        tripRepository.delete(key);
+    }
+    
+
+    function createSub(str) {
+        let sub = document.createElement('div');
+        const txt = document.createTextNode(str);
+        sub.className = 'sub';
+        sub.appendChild(txt);
+        return sub;
+    }
+
+    function createMain(str) {
+        let main = document.createElement('div');
+        const txt = document.createTextNode(str);
+        main.className = 'main';
+        main.appendChild(txt);
+        return main;
+    }
+
+    function loadingAnyThing() {
+        addTrip("박성훈");
+        addSpot("박성훈", "1");
+        addSpot("박성훈", "2");
+        addSpot("박성훈", "3");
+        addSpot("박성훈", "1");
+        addTrip("시헌");
+        addSpot("시헌", "1");
+        addSpot("시헌", "2");
+        addSpot("시헌", "3");
+        deleteSpot("시헌", "2");
+        addTrip("hi");
+        deleteTrip("hi");
+        addTrip("이정윤");
+        addTrip("임새연");
+        addTrip("사용자");
+        addTrip("아무나");
+        addSpot("이정윤", "1");
+        addSpot("이정윤", "1");
+        addSpot("이정윤", "1");
+        addSpot("이정윤", "1");
+        addSpot("이정윤", "2");
+        addSpot("임새연", "1");
+        addSpot("임새연", "광화문");
+    }
+
+    function viewTrip(key) {
+        let trip = document.createElement('div');
+        let main = document.createElement('div');
+        let txt = document.createTextNode(key);
+        const access = document.getElementById("side_bar");
+    
+        trip.className = 'trip';
+        trip.setAttribute('ondrop', 'drop(event)');
+        trip.setAttribute('ondragover', 'allowDrop(event)');
+        
+        main.className = 'main';
+        main.appendChild(txt);
+        trip.appendChild(main);
+
+        for(let i of tripRepository.get(key)) {
+            trip.appendChild(createSub(i));
+        }
+        
+        access.appendChild(trip);
+    }
+
+    loadingAnyThing();
+
+    for(let i of tripRepository.keys()) {
+        viewTrip(i);
+    }
 
 </script>
 
