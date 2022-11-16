@@ -22,9 +22,19 @@
         <div class="middle">
             <img id = "background" src="./background.jpg" > 
             <div class="searchbar">
-                <input class="searchaction" maxlength="1024" name="p" type="text" aria-autocomplete="both" aria-haspopup="false" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="" role="combobox" spellcheck="false" title="검색" value="" aria-label="검색">
+                <input id="searchBox" class="searchaction" maxlength="1024" name="p" type="text" aria-autocomplete="both" aria-haspopup="false" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="" role="combobox" spellcheck="false" title="검색" placeholder="목적지를 입력해주세요" value="" aria-label="검색">
+                <script>
+
+                    function searchBtn() {
+                        var searchBoxItem = document.getElementById('searchBox').value;
+                        console.log(searchBoxItem);
+                    
+                        localStorage.setItem('key', searchBoxItem);
+                    }
+                    
+                </script>
                 <a value="search" href="result.html">
-                    <button class="searchbutton">search</button>
+                    <button class="searchbutton" onclick="searchBtn()">검색</button>
                 </a>
             </div>
         </div>

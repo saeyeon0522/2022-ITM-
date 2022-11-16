@@ -135,22 +135,30 @@
 
 <body>
     <div id="color_bar">
+
         <div id="result_bar">
-            <div>
-                메인페이지 검색결과:&nbsp&nbsp
-            </div>
+            <script>
+                if(localStorage.getItem('key')){
+                    var lastData = localStorage.getItem('key')
+                   }
+                console.log(localStorage.getItem('key'));
+            </script>
             <div id="placeSearchResult">
-                <div class="searcedPlace">서울과기대</div>
+                <div class="searcedPlace"></div>
                 <script>
                     var element = document.getElementById('placeSearchResult');
-                    var searchResult = element.innerText;
+                    var searchResult = element.innerHTML;
+                    searchResult = localStorage.getItem('key');
                     console.log(searchResult);
                 </script>
             </div>
+            <div>
+                &nbsp&nbsp검색결과
+            </div>
         </div>
         <div id="btn_bar">
-            <div class="btn"><a href="#">로그아웃</a></div>
             <div class="btn"><a href="#">마이페이지</a></div>
+            <div class="btn"><a href="index.html">로그아웃</a></div>
         </div>
 
     </div>
