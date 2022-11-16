@@ -1,16 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>login</title>
 </head>
 <body>
-    <form action="login.html" method="get">
-        id : <input type="text" name="id"><br>
-        pw : <input type="password" name="pw"><br>
-        <input type="submit" value="log in">
+
+    <form>
+        <h1>로그인</h1>
+        <div>email : <input type="email" id="signInEmail"></div>
+        <div>password : <input type="password" id="signInPassword"></div>
+        <button type="submit" id="signInButton">로그인</button>
+        <button type="submit"><a href="join.html"></a>회원가입 하기</button>
+
     </form>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDdOzHUovDZn9joWPyfiXr_ewLHFtkaFt0",
+          authDomain: "myroute-b80dc.firebaseapp.com",
+          projectId: "myroute-b80dc",
+          storageBucket: "myroute-b80dc.appspot.com",
+          messagingSenderId: "145137958841",
+          appId: "1:145137958841:web:044b7b5638c18481258068",
+          measurementId: "G-YMN9LMHDX0"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+            .then((userCredential) => {
+                // Signed in 
+                console.log(userCredential);
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                console.log('로그인 실패');
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+
+        document.getElementById('signInButton').addEventListener('click',(event) => {
+            event.preventDefault();
+            const signInEmail = document.getElementById('signInEmail').value;
+            const signInPassword = document.getElementById('signInPassword').value;
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+                .then((userCredential) => {
+                    // Signed in
+                    console.log(userCredential); 
+                    const user = userCredential.user;
+                    // ...
+                })
+                .catch((error) => {
+                    console.log('로그인 실패');
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+            })
+
+                console.log(app);
+    </script>
+    
+
 </body>
+
+
 </html>

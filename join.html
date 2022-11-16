@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>join</title>
 </head>
 <body>
 
@@ -12,21 +12,8 @@
         <h1>회원가입</h1>
         <div>email : <input type="email" id="signUpEmail"></div>
         <div>password : <input type="password" id="signUpPassword"></div>
-        <button type="submit" id="signUpButton">회원가입 하기</button>
-        <button>로그인 하러 가기</button>
-    </form>
+        <button type="submit" id="signUpButton">회원가입</button>
 
-    <form>
-        <h1>로그인</h1>
-        <div>email : <input type="email" id="signInEmail"></div>
-        <div>password : <input type="password" id="signInPassword"></div>
-        <button type="submit" id="signInButton">로그인 하기</button>
-        <button>회원가입 하러 가기</button>
-    </form>
-
-    <form>
-        <br>
-        <button type="submit" id="signOutButton">로그아웃</button>
     </form>
 
     <script type="module">
@@ -52,19 +39,17 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
     
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
-        const auth = getAuth();
-
-        document.getElementById('signUpButton').addEventListener('click', (event) => {
+        document.getElementById('signUpButton').addEventListener('click',(event) => {
             event.preventDefault();
             const signUpEmail = document.getElementById('signUpEmail').value;
             const signUpPassword = document.getElementById('signUpPassword').value;
-
+            const auth = getAuth();
             createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
                 .then((userCredential) => {
-                    // Signed in 
                     console.log(userCredential);
+                    // Signed in 
                     const user = userCredential.user;
                     // ...
                 })
@@ -75,37 +60,6 @@
                     // ..
                 });        
         
-        })
-
-        document.getElementById('signInButton').addEventListener('click',(event) => {
-            event.preventDefault();
-            const signInEmail = document.getElementById('signInEmail').value;
-            const signInPassword = document.getElementById('signInPassword').value;
-            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
-                .then((userCredential) => {
-                    // Signed in 
-                    console.log(userCredential)
-                    const user = userCredential.user;
-                    // ...
-                })
-                .catch((error) => {
-                    console.log('로그인 실패');
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                });
-
-            })
-        
-        document.getElementById('signOutButton').addEventListener('click', (event) => {
-            event.preventDefault();
-            signOut(auth).then(() => {
-                // Sign-out successful.
-                console.log('logout complete');
-              }).catch((error) => {
-                // An error happened.
-                console.log('logout error');
-              });
-
         })
 
 
