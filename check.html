@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <h1>firebase test</h1>
+    <input type="text" placeholder="name">
+    <input type="text" placeholder="state">
+    <input type="text" placeholder="country">
+    <button>upload data</button>
+
+
+    <script>
+        import { doc, setDoc } from "firebase/firestore"; 
+
+        // Add a new document in collection "cities"
+        await setDoc(doc(db, "cities", "LA"), {
+            name: "Los Angeles",
+            state: "CA",
+            country: "USA"
+        });
+    </script>
+
+    <script>
+        const firebase = require("firebase");
+        // Required for side-effects
+        require("firebase/firestore");
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</body>
+
+</html>
