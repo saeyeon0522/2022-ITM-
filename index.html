@@ -9,10 +9,11 @@
 <body>
 
     <form>
+        <h1>로그인</h1>
         <div>email : <input type="email" id="signInEmail"></div>
         <div>password : <input type="password" id="signInPassword"></div>
         <button type="submit" id="signInButton">로그인</button>
-        <button><a href="join.html"></a>회원가입</button>
+        <button type="submit"><a href="join.html"></a>회원가입 하기</button>
 
     </form>
 
@@ -39,13 +40,13 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
     
-        import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
         const auth = getAuth();
         signInWithEmailAndPassword(auth, signInEmail, signInPassword)
             .then((userCredential) => {
                 // Signed in 
-                console.log(signInEmail,signInPassword);
+                console.log(userCredential);
                 const user = userCredential.user;
                 // ...
             })
